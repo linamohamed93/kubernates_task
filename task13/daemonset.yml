@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: node-logger
+spec:
+  selector:
+    matchLabels:
+      name: logg
+  template:
+    metadata:
+      labels:
+        name: logg
+    spec:
+      containers:
+      - name: fluent
+        image: fluent/fluent-bit
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+      volumes:
+      - name: varlog
+
