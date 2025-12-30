@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-taint
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  tolerations:
+  - key: "node-role"
+    operator: "Equal"
+    value: "logging"
+    effect: "NoSchedule"
+
